@@ -149,6 +149,20 @@ function get_language_switch_url($target_lang) {
     return get_home_url() . '/' . $target_lang . '/';
 }
 
+/**
+ * Enqueue theme styles and scripts
+ */
+function alexmade_enqueue_styles() {
+    // Enqueue main theme stylesheet
+    wp_enqueue_style('alexmade-style', get_stylesheet_uri(), array(), '1.0.0');
+    
+    // Enqueue additional styles
+    wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/css/swiper-bundle.min.css', array(), '1.0.0');
+    wp_enqueue_style('fancybox', get_template_directory_uri() . '/css-2/jquery.fancybox.min.css', array(), '1.0.0');
+    wp_enqueue_style('main-css', get_template_directory_uri() . '/css-2/main.css', array(), '1.0.0');
+}
+add_action('wp_enqueue_scripts', 'alexmade_enqueue_styles');
+
 		
 	
 ?>
