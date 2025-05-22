@@ -107,8 +107,10 @@ function get_language_url($path = '') {
 function use_consolidated_template($templates) {
     $current_url = $_SERVER['REQUEST_URI'];
     
-    // Check if we're on an activities page
-    if (strpos($current_url, 'activities') !== false) {
+    // Check for activity pages in all languages
+    if (strpos($current_url, '/en/activities') !== false ||
+        strpos($current_url, '/el/aktivnosti') !== false ||
+        strpos($current_url, '/ru/activity_ru') !== false) {
         // Add our consolidated template to the beginning of the template hierarchy
         array_unshift($templates, 'template-activities-consolidated.php');
     }

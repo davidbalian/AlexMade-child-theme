@@ -15,6 +15,8 @@ if (strpos($current_url, '/el/') !== false) {
     $lang = 'el';
 } elseif (strpos($current_url, '/ru/') !== false) {
     $lang = 'ru';
+} elseif (strpos($current_url, '/en/') !== false) {
+    $lang = 'en';
 }
 
 // Language-specific content
