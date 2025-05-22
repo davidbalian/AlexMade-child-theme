@@ -6,21 +6,28 @@
       var swiper = new Swiper(".mySwiper", {
         spaceBetween: 30,
         loop: true,
+        centeredSlides: true,
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
         },
-
-autoplay: {
-            delay: 3000, // Time in milliseconds between slides (e.g., 3000ms = 3 seconds)
-            disableOnInteraction: false, // Set to false to continue autoplay after user interaction
-            pauseOnMouseEnter: true, // Pause autoplay when the mouse enters the slider
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         },
-        
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
+        on: {
+          autoplayTimeLeft(s, time, progress) {
+            if (progressCircle && progressContent) {
+              progressCircle.style.setProperty("--progress", 1 - progress);
+              progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+            }
+          }
+        }
       });
 </script>
 
