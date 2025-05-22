@@ -5,7 +5,7 @@
     */
 ?>
 
-<?php include_once("header-box.php"); ?>
+<?php include_language_specific_part('header'); ?>
 <head>
     <link href="<?php bloginfo('template_url'); ?>/fonts-2/stylesheet.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css-2/jquery.fancybox.min.css">
@@ -186,4 +186,4 @@
   })
 </script>
 
-<?php include_once("footer-box.php"); ?> 
+<?php include_language_specific_part('footer'); ?> 

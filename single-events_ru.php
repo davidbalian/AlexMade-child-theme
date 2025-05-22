@@ -1,4 +1,4 @@
-<?php include_once("header-box_ru.php"); ?>
+<?php include_language_specific_part('header'); ?>
 
 <section class="bread event-bread">
     <div class="container">
@@ -75,4 +75,4 @@
     </div>
 </section> 
 
-<?php include_once("footer-box_ru.php"); ?> 
+<?php include_language_specific_part('footer'); ?> 

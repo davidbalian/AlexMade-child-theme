@@ -4,7 +4,7 @@
     */
 ?>
 
-<?php include_once("header-box_el.php"); ?>
+<?php include_language_specific_part('header'); ?>
 
 <section class="home-one">
     <div class="swiper mySwiper" style="background: #000 url(<?php echo get_home_url(); ?>/wp-content/themes/AlexMade/img/banner-fon.jpg) left top no-repeat; background-size: contain;">
@@ -298,4 +298,4 @@
     </div>
 </section> 
 
-<?php include_once("footer-box_el.php"); ?> 
+<?php include_language_specific_part('footer'); ?> 

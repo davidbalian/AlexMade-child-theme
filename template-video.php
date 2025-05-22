@@ -4,7 +4,7 @@
     */
 ?>
 
-<?php include_once("header-box.php"); ?>
+<?php include_language_specific_part('header'); ?>
 
 <section class="events-one" style="background: url(<?php echo get_field('act-izobrazhenie') ['url']?>) center no-repeat; background-size:cover;">
     <div class="container">
@@ -53,4 +53,4 @@
     </section>  
 </div>
 
-<?php include_once("footer-box.php"); ?> 
+<?php include_language_specific_part('footer'); ?> 
