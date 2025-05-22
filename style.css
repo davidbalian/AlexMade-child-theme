@@ -2603,3 +2603,62 @@ textarea {
     }
     
 }
+
+/* Top Bar Styles */
+.top-bar {
+    background: #000;
+    color: #fff;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar .header-time {
+    color: #fff;
+    margin-right: 20px;
+}
+
+.top-bar .headerlang-box {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar .header-location {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.top-bar .header-location img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.top-bar .header-location span {
+    color: #fff;
+}
+
+/* Adjust header styles */
+.header {
+    background: #fff;
+}
+
+.header-top {
+    padding: 15px 0;
+}
