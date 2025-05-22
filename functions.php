@@ -128,6 +128,13 @@ function use_consolidated_template($templates) {
         array_unshift($templates, 'template-about-consolidated.php');
     }
     
+    // Check for events pages in all languages
+    if (strpos($current_url, '/en/events') !== false ||
+        strpos($current_url, '/el/sobytiya') !== false ||
+        strpos($current_url, '/ru/events_ru') !== false) {
+        array_unshift($templates, 'template-events-consolidated.php');
+    }
+    
     return $templates;
 }
 add_filter('page_template_hierarchy', 'use_consolidated_template');
