@@ -4,7 +4,7 @@
     */
 ?>
 
-<?php include_once("header-box_ru.php"); ?>
+<?php include_language_specific_part('header'); ?>
 
 <section class="events-one" style="background: url(<?php echo get_field('contacts-izobrazhenie') ['url']?>) center no-repeat; background-size:cover;">
     <div class="container">
@@ -65,4 +65,4 @@
 
 </div>
 
-<?php include_once("footer-box_ru.php"); ?>
+<?php include_language_specific_part('footer'); ?>
