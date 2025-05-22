@@ -102,7 +102,7 @@ function get_language_url($path = '') {
 }
 
 /**
- * Filter the template hierarchy to use our consolidated template
+ * Filter the template hierarchy to use our consolidated templates
  */
 function use_consolidated_template($templates) {
     $current_url = $_SERVER['REQUEST_URI'];
@@ -111,8 +111,21 @@ function use_consolidated_template($templates) {
     if (strpos($current_url, '/en/activities') !== false ||
         strpos($current_url, '/el/aktivnosti') !== false ||
         strpos($current_url, '/ru/activity_ru') !== false) {
-        // Add our consolidated template to the beginning of the template hierarchy
         array_unshift($templates, 'template-activities-consolidated.php');
+    }
+    
+    // Check for contact pages in all languages
+    if (strpos($current_url, '/en/contacts') !== false ||
+        strpos($current_url, '/el/kontakty') !== false ||
+        strpos($current_url, '/ru/contacts_ru') !== false) {
+        array_unshift($templates, 'template-contacts-consolidated.php');
+    }
+    
+    // Check for about pages in all languages
+    if (strpos($current_url, '/en/about') !== false ||
+        strpos($current_url, '/el/o-nas') !== false ||
+        strpos($current_url, '/ru/about') !== false) {
+        array_unshift($templates, 'template-about-consolidated.php');
     }
     
     return $templates;
