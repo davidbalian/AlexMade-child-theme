@@ -22,13 +22,16 @@
  * @param string $type The type of include ('header' or 'footer').
  */
 function include_language_specific_part($type) {
-    $lang = get_locale(); // Get the current language
+    $current_url = $_SERVER['REQUEST_URI'];
     $file = $type . '-box';
-    if ($lang === 'el') {
+    
+    // Check if the URL contains language indicators
+    if (strpos($current_url, '/el/') !== false) {
         $file .= '_el';
-    } elseif ($lang === 'ru') {
+    } elseif (strpos($current_url, '/ru/') !== false) {
         $file .= '_ru';
     }
+    
     include_once($file . '.php');
 }
 
