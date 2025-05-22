@@ -25,19 +25,22 @@ $content = [
         'title' => 'Activities',
         'description' => 'Discover our exciting activities',
         'book_now' => 'Book Now',
-        'more_info' => 'More Information'
+        'more_info' => 'More Information',
+        'home' => 'Home'
     ],
     'el' => [
         'title' => 'Δραστηριότητες',
         'description' => 'Ανακαλύψτε τις συναρπαστικές μας δραστηριότητες',
         'book_now' => 'Κράτηση Τώρα',
-        'more_info' => 'Περισσότερες Πληροφορίες'
+        'more_info' => 'Περισσότερες Πληροφορίες',
+        'home' => 'Αρχική'
     ],
     'ru' => [
         'title' => 'Активности',
         'description' => 'Откройте для себя наши увлекательные мероприятия',
         'book_now' => 'Забронировать',
-        'more_info' => 'Подробнее'
+        'more_info' => 'Подробнее',
+        'home' => 'Главная'
     ]
 ];
 
@@ -45,45 +48,61 @@ $content = [
 $current_content = isset($content[$lang]) ? $content[$lang] : $content['default'];
 ?>
 
-<div class="activities-container">
-    <h1><?php echo esc_html($current_content['title']); ?></h1>
-    <p><?php echo esc_html($current_content['description']); ?></p>
-    
-    <!-- Activity Cards -->
-    <div class="activity-cards">
-        <?php
-        // Example activity data - you would typically get this from WordPress
-        $activities = [
-            [
-                'title' => [
-                    'default' => 'Hiking',
-                    'el' => 'Πεζοπορία',
-                    'ru' => 'Пеший туризм'
-                ],
-                'description' => [
-                    'default' => 'Explore beautiful trails',
-                    'el' => 'Εξερευνήστε όμορφα μονοπάτια',
-                    'ru' => 'Исследуйте красивые тропы'
-                ]
-            ],
-            // Add more activities as needed
-        ];
-        
-        foreach ($activities as $activity) {
-            $activity_title = isset($activity['title'][$lang]) ? $activity['title'][$lang] : $activity['title']['default'];
-            $activity_desc = isset($activity['description'][$lang]) ? $activity['description'][$lang] : $activity['description']['default'];
-            ?>
-            <div class="activity-card">
-                <h2><?php echo esc_html($activity_title); ?></h2>
-                <p><?php echo esc_html($activity_desc); ?></p>
-                <a href="<?php echo esc_url(get_language_url('book')); ?>" class="book-button">
-                    <?php echo esc_html($current_content['book_now']); ?>
-                </a>
-            </div>
-            <?php
-        }
-        ?>
+<section class="events-one" style="background: url(<?php echo get_field('act-izobrazhenie')['url'] ?>) center no-repeat; background-size:cover;">
+    <div class="container">
+        <h1><?php echo esc_html($current_content['title']); ?></h1>
     </div>
+</section> 
+
+<div class="events-bgr">
+    <section class="bread">
+        <div class="container">
+            <a href="<?php echo get_language_url(); ?>"><?php echo esc_html($current_content['home']); ?></a> - <span><?php echo esc_html($current_content['title']); ?></span>
+        </div>
+    </section> 
+
+    <section class="home-five about-two">
+        <div class="container">
+            <div class="content">
+                <span class="home-two-text"><?php echo get_field('about-two-tekst'); ?></span>
+                <div class="home-two-block">
+                    <?php foreach (get_field('home-two-blok') as $key => $value): ?>
+                        <div class="home-two-item">
+                            <div><?php echo $value['home-two-tekst_1']; ?></div>
+                            <div><?php echo $value['home-two-tekst_2']; ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-five price-two">
+        <div class="container">
+            <div class="content">
+                <h3><?php echo get_field('price-three-podagolovok'); ?></h3>
+                <div class="price-two-block">
+                    <?php foreach (get_field('price-three-blok') as $key => $value): ?> 
+                        <div class="price-two-item">
+                            <img src="<?php echo $value['price-three-ikonka']['url']; ?>" class="price-two-icon">
+                            <h4><?php echo $value['price-three-tajtl']; ?></h4>
+                            <div class="price-two-item-block">
+                                <?php foreach ($value['price-three-spisok'] as $key2 => $value2): ?>
+                                    <div class="price-two-item-block-item">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/themes/AlexMade/img/023.svg">
+                                        <span><?php echo $value2['price-three-tekst']; ?></span>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <span class="price"><?php echo $value['price-three-czena']; ?></span>
+                            <a class="button" href="<?php echo get_language_url('book'); ?>"><?php echo esc_html($current_content['book_now']); ?></a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <a class="button" href="<?php echo get_field('price-three-ssylka'); ?>"><?php echo esc_html($current_content['more_info']); ?></a>
+            </div>
+        </div>
+    </section>
 </div>
 
 <?php
