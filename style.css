@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /*
-Theme Name: AlexMade Child
+Theme Name: AlexMade
 Author: Alex Made
 Author URI: http://alexmade.ru/
 */
@@ -287,12 +287,12 @@ a:hover {
 }
 
 .brg-one {
-  width: auto;
+  width: calc(50% - 641px);
   background: rgba(5, 13, 46, 0.8);
 }
 
 .brg-two {
-  width: auto;
+  width: calc(50% - 641px);
 }
 
 .home-one .swiper-slide .container {
@@ -301,8 +301,7 @@ a:hover {
   justify-content: flex-start;
   align-items: stretch;
   padding: 0;
-  width: 1519px;
-  max-width: 1519px;
+  width: 1282px;
 }
 
 .mySwiper {
@@ -362,7 +361,7 @@ a:hover {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 10px;
+  gap: 30px;
 }
 
 .slider-icon {
@@ -424,7 +423,6 @@ a:hover {
   position: relative;
   top: -40px;
   margin-bottom: -40px;
-  bottom: 20px !important;
 }
 
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
@@ -944,7 +942,7 @@ a:hover {
 }
 
 .home-eight-item span {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   padding-bottom: 10px;
   text-align: center;
@@ -953,7 +951,7 @@ a:hover {
 .home-eight-item a {
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .home-nine {
@@ -1645,15 +1643,6 @@ a:hover {
   margin: 30px 0;
 }
 
-.contacts-three .big-icon:hover {
-  border: 2px #00c1f6 solid;
-  box-shadow: 0px 0px 8px 0px rgba(0, 193, 246, 0.9);
-}
-
-.contacts-three .big-icon:hover img {
-  filter: none;
-}
-
 .price-two .home-two-text {
   text-align: center;
   margin: 30px 0;
@@ -2006,25 +1995,12 @@ select {
   font-family: "Neo Sans Pro Regular";
 }
 
-textarea {
-  border: 1px #00c1f6 solid;
-  padding: 10px;
-  font-size: 18px;
-  color: #00c1f6;
-  background: #03081a;
-  outline: none;
-  font-family: "Neo Sans Pro Regular";
-  resize: vertical;
-  margin: 20px 0;
-}
-
 .wpcf7-submit {
   font-weight: bold;
   padding-left: 75px;
   padding-right: 75px;
   text-transform: uppercase;
   margin-left: 10px;
-  /*    margin-top: 10px; */
   cursor: pointer;
 }
 
@@ -2251,10 +2227,6 @@ textarea {
     margin: 0 0 20px 0;
   }
 
-  .header-time h1 {
-    font-size: 22px;
-  }
-
   .home-nine .container {
     padding: 0;
   }
@@ -2370,10 +2342,6 @@ textarea {
     width: 100%;
   }
 
-  .slider-icon-block {
-    gap: 2px;
-  }
-
   .header-top .container {
     flex-wrap: wrap;
   }
@@ -2408,7 +2376,11 @@ textarea {
   }
 }
 
-@media screen and (min-width: 430px) {
+@media screen and (max-width: 420px) {
+  .slider-icon-block {
+    gap: 2px;
+  }
+
   .slider-icon div {
     font-size: 18px;
   }
@@ -2436,9 +2408,7 @@ textarea {
   }
 
   .slider-icon-block {
-    width: 100%;
     margin-top: 12px;
-    gap: 5px;
   }
 
   .events-two-item,
@@ -2515,13 +2485,4 @@ textarea {
   .home-two-item {
     margin-bottom: 20px;
   }
-}
-
-/* Adjust header styles */
-.header {
-  background: #fff;
-}
-
-.header-top {
-  padding: 15px 0;
 }
