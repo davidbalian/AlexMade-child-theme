@@ -2342,10 +2342,6 @@ select {
     width: 100%;
   }
 
-  .header-top .container {
-    flex-wrap: wrap;
-  }
-
   .header .logo {
     width: 100%;
     margin-bottom: 30px;
