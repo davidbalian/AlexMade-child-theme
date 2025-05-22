@@ -149,53 +149,82 @@ function get_language_switch_url($target_lang) {
     $current_url = $_SERVER['REQUEST_URI'];
     $current_path = parse_url($current_url, PHP_URL_PATH);
     
-    // Get the current template being used
-    $current_template = get_page_template_slug();
+    // Get the current template file
+    global $template;
+    $template_file = basename($template);
     
     // Check if we're using a consolidated template
-    $is_consolidated = strpos($current_template, '-consolidated.php') !== false;
+    $is_consolidated = strpos($template_file, '-consolidated.php') !== false;
     
     if ($is_consolidated) {
         // For consolidated templates, just switch the language prefix
         $path_without_lang = preg_replace('#^/(en|el|ru)/#', '/', $current_path);
         return get_home_url() . '/' . $target_lang . $path_without_lang;
     } else {
-        // For non-consolidated templates, we need to map the URLs
-        $page_mapping = [
-            'activities' => [
-                'en' => 'activities',
-                'el' => 'aktivnosti',
-                'ru' => 'activity_ru'
-            ],
-            'contacts' => [
-                'en' => 'contacts',
-                'el' => 'kontakty',
-                'ru' => 'contacts_ru'
-            ],
-            'about' => [
-                'en' => 'about',
-                'el' => 'o-nas',
-                'ru' => 'about'
-            ],
-            'events' => [
-                'en' => 'events',
-                'el' => 'sobytiya',
-                'ru' => 'events_ru'
-            ]
-        ];
+        // For non-consolidated templates, check if there's a language-specific version
+        $template_dir = dirname($template);
+        $base_template = preg_replace('/_(en|el|ru)\.php$/', '.php', $template_file);
+        $lang_template = preg_replace('/\.php$/', '_' . $target_lang . '.php', $base_template);
         
-        // Remove current language prefix
-        $path_without_lang = preg_replace('#^/(en|el|ru)/#', '/', $current_path);
-        
-        // Try to find a matching page in the mapping
-        foreach ($page_mapping as $page => $slugs) {
-            if (strpos($path_without_lang, '/' . $page) !== false) {
-                return get_home_url() . '/' . $target_lang . '/' . $slugs[$target_lang];
+        if (file_exists($template_dir . '/' . $lang_template)) {
+            // If language-specific template exists, use it
+            $path_without_lang = preg_replace('#^/(en|el|ru)/#', '/', $current_path);
+            $path_parts = explode('/', trim($path_without_lang, '/'));
+            $last_part = end($path_parts);
+            
+            // Remove any existing language suffix
+            $base_name = preg_replace('/_(en|el|ru)$/', '', $last_part);
+            
+            // Add the new language suffix
+            $new_name = $base_name . '_' . $target_lang;
+            
+            // Replace the last part of the path
+            $path_parts[count($path_parts) - 1] = $new_name;
+            
+            return get_home_url() . '/' . $target_lang . '/' . implode('/', $path_parts);
+        } else {
+            // If no language-specific template, use the mapping
+            $page_mapping = [
+                'activities' => [
+                    'en' => 'activities',
+                    'el' => 'aktivnosti',
+                    'ru' => 'activity_ru'
+                ],
+                'contacts' => [
+                    'en' => 'contacts',
+                    'el' => 'kontakty',
+                    'ru' => 'contacts_ru'
+                ],
+                'about' => [
+                    'en' => 'about',
+                    'el' => 'o-nas',
+                    'ru' => 'about'
+                ],
+                'events' => [
+                    'en' => 'events',
+                    'el' => 'sobytiya',
+                    'ru' => 'events_ru'
+                ],
+                'price' => [
+                    'en' => 'price',
+                    'el' => 'price_el',
+                    'ru' => 'price_ru'
+                ]
+            ];
+            
+            // Remove current language prefix
+            $path_without_lang = preg_replace('#^/(en|el|ru)/#', '/', $current_path);
+            
+            // Try to find a matching page in the mapping
+            foreach ($page_mapping as $page => $slugs) {
+                if (strpos($path_without_lang, '/' . $page) !== false) {
+                    return get_home_url() . '/' . $target_lang . '/' . $slugs[$target_lang];
+                }
             }
+            
+            // If no mapping found, return the language homepage
+            return get_home_url() . '/' . $target_lang . '/';
         }
-        
-        // If no mapping found, return the language homepage
-        return get_home_url() . '/' . $target_lang . '/';
     }
 }
 
