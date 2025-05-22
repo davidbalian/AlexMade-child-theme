@@ -139,6 +139,66 @@ function use_consolidated_template($templates) {
 }
 add_filter('page_template_hierarchy', 'use_consolidated_template');
 
+/**
+ * Get the URL for switching languages while maintaining the current page
+ * 
+ * @param string $target_lang The target language code (en, el, ru)
+ * @return string The URL for the same page in the target language
+ */
+function get_language_switch_url($target_lang) {
+    $current_url = $_SERVER['REQUEST_URI'];
+    $current_path = parse_url($current_url, PHP_URL_PATH);
+    
+    // Get the current template being used
+    $current_template = get_page_template_slug();
+    
+    // Check if we're using a consolidated template
+    $is_consolidated = strpos($current_template, '-consolidated.php') !== false;
+    
+    if ($is_consolidated) {
+        // For consolidated templates, just switch the language prefix
+        $path_without_lang = preg_replace('#^/(en|el|ru)/#', '/', $current_path);
+        return get_home_url() . '/' . $target_lang . $path_without_lang;
+    } else {
+        // For non-consolidated templates, we need to map the URLs
+        $page_mapping = [
+            'activities' => [
+                'en' => 'activities',
+                'el' => 'aktivnosti',
+                'ru' => 'activity_ru'
+            ],
+            'contacts' => [
+                'en' => 'contacts',
+                'el' => 'kontakty',
+                'ru' => 'contacts_ru'
+            ],
+            'about' => [
+                'en' => 'about',
+                'el' => 'o-nas',
+                'ru' => 'about'
+            ],
+            'events' => [
+                'en' => 'events',
+                'el' => 'sobytiya',
+                'ru' => 'events_ru'
+            ]
+        ];
+        
+        // Remove current language prefix
+        $path_without_lang = preg_replace('#^/(en|el|ru)/#', '/', $current_path);
+        
+        // Try to find a matching page in the mapping
+        foreach ($page_mapping as $page => $slugs) {
+            if (strpos($path_without_lang, '/' . $page) !== false) {
+                return get_home_url() . '/' . $target_lang . '/' . $slugs[$target_lang];
+            }
+        }
+        
+        // If no mapping found, return the language homepage
+        return get_home_url() . '/' . $target_lang . '/';
+    }
+}
+
 		
 	
 ?>

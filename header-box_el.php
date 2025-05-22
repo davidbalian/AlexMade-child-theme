@@ -23,8 +23,8 @@
                         <img src="<?php echo get_home_url(); ?>/wp-content/themes/AlexMade/img/flag-el.png" class="lang-img">
                         <select onchange="window.location.href=this.options[this.selectedIndex].value">
                             <option>EL</options>
-                            <option VALUE="<?php echo get_home_url(); ?>/en/">EN</option>
-                            <option VALUE="<?php echo get_home_url(); ?>/ru/">RU</option> 
+                            <option VALUE="<?php echo get_language_switch_url('en'); ?>">EN</option>
+                            <option VALUE="<?php echo get_language_switch_url('ru'); ?>">RU</option>
                         </select>
                     </div>
                     <div class="header-location">
